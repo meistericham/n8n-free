@@ -216,6 +216,6 @@ Ideal for:
 
 ---
 
-Author: Mohd Hisyamudin
-Mini Course: BUILDS – Panduan Zero to Hero AI WhatsApp Automation
+* Author: Mohd Hisyamudin
+* Mini Course: BUILDS – Panduan Zero to Hero AI WhatsApp Automation
 
