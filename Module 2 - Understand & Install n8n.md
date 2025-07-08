@@ -1,4 +1,4 @@
-# 🚀 BUILDS Module 2: Install & Deploy n8n using Docker + Update Guide (with Backup & Explanations)
+# 🚀 BUILDS Module 2: Understand & Install n8n (Install & deploy n8n using Docker + Update Guide - with Backup & Explanations)
 
 This guide helps you **install and deploy n8n** on your GCP VM quickly and avoid common installation errors, plus includes how to **update to the latest n8n image with backup**, with explanations for each command clearly placed **as notes below commands** to avoid copy-paste confusion.
 
