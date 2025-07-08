@@ -112,7 +112,6 @@ Update server:
 
 ```bash
 sudo apt update
-sudo apt upgrade -y
 ```
 
 Install common packages (example nginx):
