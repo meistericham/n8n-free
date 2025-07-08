@@ -1,4 +1,5 @@
-# 🚀 Setting up GCP VM with External & Internal IP (README.md)
+# 🚀 Setting up GCP VM with External & Internal IP
+by: Mohd Hisyamudin
 
 This guide provides **step-by-step instructions** to set up a **Google Cloud Platform (GCP) VM**, configure **external and internal IP addresses**, and prepare it for your projects.
 
