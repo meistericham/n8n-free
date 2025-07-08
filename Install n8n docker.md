@@ -1,4 +1,6 @@
 # 🚀 Self-Hosting n8n on a Linux Server Using Docker (External IP Setup)
+By: Mohd Hisyamudin
+
 
 This guide provides **step-by-step instructions** to self-host [n8n](https://n8n.io), a free and open-source workflow automation tool, on a Linux server using **Docker** and access it via your **external IP address** (no domain or SSL setup required).
 
