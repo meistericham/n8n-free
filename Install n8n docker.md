@@ -1,18 +1,18 @@
-# 🚀 BUILDS Module 2: Install & Deploy n8n using Docker
+# 🚀 BUILDS Module 2: Install & Deploy n8n using Docker + Update Guide (with Backup)
 
-This guide helps you **install and deploy n8n** on your GCP VM quickly and avoid common installation errors.
-
----
-
-## 📾 **📌 Prerequisites**
-
-* Google Cloud Platform (GCP) VM instance (e2-micro, Ubuntu 22.04 LTS recommended)
-* Firewall rules open for **TCP port 5678**
-* Swap file configured (optional but recommended for micro VM stability)
+This guide helps you **install and deploy n8n** on your GCP VM quickly and avoid common installation errors, plus includes how to **update to the latest n8n image with backup**.
 
 ---
 
-## ✅ **Step 1: Update system & install Docker**
+## 🔷 📌 Prerequisites
+
+* GCP VM (e2-micro, Ubuntu 22.04 LTS recommended)
+* Firewall open for TCP:5678
+* Optional: swap file for micro VM stability
+
+---
+
+## ✅ Step 1: Update system & install Docker
 
 ```bash
 sudo apt update
@@ -23,29 +23,24 @@ sudo systemctl enable docker
 
 ---
 
-## ✅ **Step 2: Prepare n8n data directory with correct permissions**
+## ✅ Step 2: Prepare n8n data directory
 
 ```bash
 mkdir ~/.n8n
 sudo chown -R 1000:1000 ~/.n8n
 ```
 
-**Explanation:**
-`.n8n` is used to store configuration and database. Changing ownership ensures Docker container can read/write without permission errors.
-
 ---
 
-## ✅ **Step 3: Pull n8n stable Docker image**
+## ✅ Step 3: Pull n8n stable image
 
 ```bash
 sudo docker pull n8nio/n8n:1.45.1
 ```
 
-> ℹ️ **Note:** Always use a specific stable version to avoid unexpected breaking changes.
-
 ---
 
-## ✅ **Step 4: Test n8n in interactive mode**
+## ✅ Step 4: Test in interactive mode
 
 ```bash
 sudo docker run -it --rm \
@@ -54,17 +49,11 @@ sudo docker run -it --rm \
   n8nio/n8n:1.45.1
 ```
 
-✔️ If successful, you will see:
-
-```
-n8n ready on 0.0.0.0, port 5678
-```
-
-🔴 **To stop:** Press `Ctrl + C`
+Press Ctrl+C to stop.
 
 ---
 
-## ✅ **Step 5: Run n8n in detached mode (production)**
+## ✅ Step 5: Run in detached mode
 
 ```bash
 sudo docker run -d --restart unless-stopped \
@@ -75,41 +64,53 @@ sudo docker run -d --restart unless-stopped \
   n8nio/n8n:1.45.1
 ```
 
-✔️ **Explanation:**
+---
 
-* `-d`: Runs container in background.
-* `--restart unless-stopped`: Auto restarts on VM reboot.
-* `N8N_SECURE_COOKIE=false`: Disables secure cookie warning for HTTP testing (enable HTTPS in production).
+## ✅ Step 6: Access n8n
+
+Go to `http://[your-external-ip]:5678`
 
 ---
 
-## ✅ **Step 6: Access n8n**
+## 🔷 🔄 Step 7: Update to latest n8n image (with backup)
 
-Open in browser:
+1. **Create backup first (important):**
 
+```bash
+cp -r ~/.n8n ~/.n8n-backup
 ```
-http://[your-external-ip]:5678
+
+2. **Stop & remove** old container:
+
+```bash
+sudo docker stop n8n
+sudo docker rm n8n
 ```
 
-🔒 **Important:** For production, setup HTTPS using **NGINX + Certbot**.
+3. **Pull latest image:**
+
+```bash
+sudo docker pull n8nio/n8n
+```
+
+4. **Run updated container:**
+
+```bash
+sudo docker run -d --restart unless-stopped \
+  --name n8n \
+  -p 5678:5678 \
+  -e N8N_SECURE_COOKIE=false \
+  -v ~/.n8n:/home/node/.n8n \
+  n8nio/n8n
+```
 
 ---
 
-## 📾 **📝 Troubleshooting Tips**
+## ✅ Outcome
 
-* **Port not accessible:** Check GCP firewall rules (allow TCP:5678).
-* **Permission errors:** Ensure correct ownership with `sudo chown -R 1000:1000 ~/.n8n`.
-* **Slow install or stuck upgrade:** Create a swap file to supplement micro VM RAM.
-
----
-
-## 🎉 **Outcome**
-
-✅ You now have **n8n installed and running live** on your GCP server, ready for AI WhatsApp automation in the next module.
+n8n is installed, backed up, and updated, ready for AI WhatsApp automation.
 
 ---
 
 **Author:** Mohd Hisyamudin
 **Mini Course:** BUILDS – Panduan Zero to Hero AI WhatsApp Automation
-
----
