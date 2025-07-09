@@ -1,4 +1,4 @@
-# 🚀 BUILDS Module 2: Understand & Install n8n (Install & deploy n8n using Docker + Update Guide - with Backup & Explanations)
+# 🚀 BUILDS Module 2: Understand & Install n8n (Install & Deploy n8n using Docker + Update Guide - with Firewall, Backup & Explanations)
 
 This guide helps you **install and deploy n8n** on your GCP VM quickly and avoid common installation errors, plus includes how to **update to the latest n8n image with backup**, with explanations for each command clearly placed **as notes below commands** to avoid copy-paste confusion.
 
@@ -7,8 +7,23 @@ This guide helps you **install and deploy n8n** on your GCP VM quickly and avoid
 ## 🔷 📌 Prerequisites
 
 * GCP VM (e2-micro, Ubuntu 22.04 LTS recommended)
-* Firewall open for TCP:5678 (so you can access n8n from your browser)
 * Optional: swap file for micro VM stability (to avoid out-of-memory issues)
+
+---
+
+## ✅ Step 0: Configure Firewall Rule
+
+Before installing n8n, configure your firewall to allow public access:
+
+1. Go to **VPC Network > Firewall rules** in GCP console.
+2. Click **“CREATE FIREWALL RULE.”**
+3. Name: `allow-n8n`
+4. Targets: `All instances in the network` or specify your VM.
+5. Source IP ranges: `0.0.0.0/0`
+6. Protocols and ports: Select **“Specified protocols and ports”**, tick **tcp**, and enter `5678`.
+7. Click **“Create.”**
+
+**Note:** This allows external devices to access your n8n app running on port 5678. Ensure you use strong authentication and switch to HTTPS for production.
 
 ---
 
@@ -143,7 +158,7 @@ sudo docker run -d --restart unless-stopped \
 
 ## ✅ Outcome
 
-You now have **n8n installed, backed up, and updated** on your GCP VM, ready for your AI WhatsApp automation workflows.
+You now have **n8n installed, firewall configured, backed up, and updated** on your GCP VM, ready for your AI WhatsApp automation workflows.
 
 ---
 
