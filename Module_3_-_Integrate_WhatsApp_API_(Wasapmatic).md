@@ -45,13 +45,13 @@ Wasapmatic is a **third party WhatsApp API provider** that:
 Before integrating into n8n, test using curl in your terminal or SSH:
 
 ```bash
-curl -X POST "https://app.wasapmatic.com/api/send/whatsapp" \
-     -H "Content-Type: multipart/form-data" \
-     -F "secret=YOUR_API_SECRET" \
-     -F "account=WHATSAPP_ACCOUNT_UNIQUE_ID" \
-     -F "recipient=RECIPIENT_PHONE_NUMBER" \
-     -F "type=text" \
-     -F "Hello, this is a test from Wasapmatic API!"
+curl -v -X POST "https://app.wasapmatic.com/api/send/whatsapp" \
+-H "Content-Type: multipart/form-data" \
+-F "secret=YOUR_API_SECRET" \
+-F "account=WHATSAPP_ACCOUNT_UNIQUE_ID" \
+-F "recipient=RECIPIENT_PHONE_NUMBER" \
+-F "type=text" \
+-F "message=Hello, this is a test from Wasapmatic API!"
 ```
 
 ✅ Replace:
