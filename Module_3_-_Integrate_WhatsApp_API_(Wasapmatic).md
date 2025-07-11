@@ -77,10 +77,10 @@ sudo apt install curl -y
 
 By the end of this module, you should have:
 
-✅ Registered a Wasapmatic account
-✅ Connected your WhatsApp device
-✅ Obtained your API Key
-✅ Successfully sent a test message via API
+* ✅ Registered a Wasapmatic account
+* ✅ Connected your WhatsApp device
+* ✅ Obtained your API Key
+* ✅ Successfully sent a test message via API
 
 ---
 
