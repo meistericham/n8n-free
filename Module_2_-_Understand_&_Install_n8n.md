@@ -96,15 +96,21 @@ Press Ctrl+C to stop.
 sudo docker run -d --restart unless-stopped \
   --name n8n \
   -p 5678:5678 \
+  -e N8N_HOST=[your-external-ip] \
+  -e N8N_PORT=5678 \
+  -e N8N_PROTOCOL=http \
+  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false \
   -e N8N_SECURE_COOKIE=false \
   -v ~/.n8n:/home/node/.n8n \
   n8nio/n8n:1.45.1
+
 ```
 
 **Note:**
 
 * Runs in background with auto restart.
 * Disables secure cookie for HTTP testing (use HTTPS in production).
+* Bind your ip address in n8n webhook
 
 ---
 
@@ -147,12 +153,16 @@ sudo docker pull n8nio/n8n
 sudo docker run -d --restart unless-stopped \
   --name n8n \
   -p 5678:5678 \
+  -e N8N_HOST=[your-external-ip] \
+  -e N8N_PORT=5678 \
+  -e N8N_PROTOCOL=http \
+  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false \
   -e N8N_SECURE_COOKIE=false \
   -v ~/.n8n:/home/node/.n8n \
-  n8nio/n8n
+  n8nio/n8n:latest
 ```
 
-**Note:** Starts n8n with updated image while using the same data folder.
+**Note:** Starts n8n with updated image, with bind external ip address, while using the same data folder.
 
 ---
 
